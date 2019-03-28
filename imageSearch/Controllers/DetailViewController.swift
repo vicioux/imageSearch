@@ -14,8 +14,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var visualEffectContainer: UIView!
     
+    @IBOutlet weak var visualEffectContainer: UIView!
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel: ImageTableViewModelType!
     let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
@@ -26,7 +27,8 @@ class DetailViewController: UIViewController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUpScrollView()
+        self.imageView.image = nil
+        self.imageViewHeightConstraint?.constant = 0
     }
     
     public init(withViewModel vm: ImageTableViewModelType, customXib: String? = nil) {
@@ -37,29 +39,37 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addViewModifiers()
-        
-        //view.backgroundColor = .clear
         visualEffectContainer.backgroundColor = .clear
         visualEffectContainer.addSubview(visualEffectView)
-        
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(gr:))))
     }
     
-    func addViewModifiers() {
-        self.hero.isEnabled = true
-        self.hero.modalAnimationType = .none
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        self.cardView.hero.id = viewModel.identifier
-        self.imageView.image = viewModel.image
-        self.cardView.hero.modifiers = [.useNoSnapshot, .spring(stiffness: 250, damping: 25)]
+        guard let title = viewModel.getTitle() ?? viewModel.getDescription() else { return }
+        self.navigationController?.detailViewNavBar(inViewController: self, title: title, goBackSelector: #selector(dissmissView))
+        self.navigationController?.removeSpaceInTop()
+    }
+    
+    private func addViewModifiers() {
+        hero.isEnabled = true
+        hero.modalAnimationType = .none
+        
+        cardView.hero.id = viewModel.identifier
+        setImage()
+        cardView.hero.modifiers = [.useNoSnapshot, .spring(stiffness: 250, damping: 25)]
         
         guard let identifier = viewModel.identifier else { return }
         view.hero.modifiers = [.source(heroID: identifier), .spring(stiffness: 250, damping: 25)]
-        self.visualEffectView.hero.modifiers = [.fade, .useNoSnapshot]
+        visualEffectView.hero.modifiers = [.fade, .useNoSnapshot]
     }
     
-    @objc func handlePan(gr: UIPanGestureRecognizer) {
+    @objc private func dissmissView() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func handlePan(gr: UIPanGestureRecognizer) {
         let translation = gr.translation(in: view)
         switch gr.state {
         case .began:
@@ -80,46 +90,26 @@ class DetailViewController: UIViewController {
         super.viewDidLayoutSubviews()
         let bounds = view.bounds
         visualEffectView.frame = bounds
+        setImage()
     }
 
     @objc func dismissView() {
         dismiss(animated: true, completion: nil)
     }
-    
-    /** Setup scroll view config */
-    private func setUpScrollView() {
-        scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 6.0
-        
-        scrollView.alwaysBounceVertical = false
-        scrollView.alwaysBounceHorizontal = false
-        scrollView.showsVerticalScrollIndicator = true
-        scrollView.flashScrollIndicators()
-    }
 }
 
-
-//class CardView: UIView {
-//    let titleLabel = UILabel()
-//    let imageView = UIImageView(image: UIImage(named: "placeholder_cover"))
-//    let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-//
-//    required init?(coder aDecoder: NSCoder) { fatalError() }
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        clipsToBounds = true
-//
-//        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
-//        imageView.contentMode = .scaleAspectFill
-//
-//        addSubview(imageView)
-//        addSubview(visualEffectView)
-//        addSubview(titleLabel)
-//    }
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        imageView.frame = bounds
-//        visualEffectView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 90)
-//        titleLabel.frame = CGRect(x: 20, y: 20, width: bounds.width - 40, height: 30)
-//    }
-//}
+extension DetailViewController: AdjustableImageHeight {
+    open func setImage() {
+        if let vm = self.viewModel, let base = vm.getBaseImage() {
+            self.adjustImageProportions(forImage: base, baseWidth: self.view.bounds.width, adjustableHeightConstraint: &self.imageViewHeightConstraint!)
+        }
+        
+        if let cachedImage = self.viewModel?.image {
+            self.imageView.image = cachedImage
+        } else {
+            self.imageView.image = UIImage(named: "placeholder_cover")
+        }
+        
+        self.imageView.backgroundColor = .white
+    }
+}

@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="cardView" destination="bIt-Ur-0sF" id="9xL-jQ-2Km"/>
                 <outlet property="imageView" destination="dTS-N7-0ZR" id="JQo-tB-MtG"/>
+                <outlet property="imageViewHeightConstraint" destination="L4p-Mt-hM5" id="ucb-EJ-E0e"/>
                 <outlet property="scrollView" destination="g5J-dk-efN" id="u0N-Xj-WRA"/>
                 <outlet property="view" destination="6eD-KH-sZ4" id="7nW-rd-kNs"/>
                 <outlet property="visualEffectContainer" destination="vrR-bk-EWi" id="rhg-hY-0AK"/>
@@ -29,38 +30,45 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIt-Ur-0sF" userLabel="cardView">
-                    <rect key="frame" x="0.0" y="70" width="375" height="400"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="667"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5J-dk-efN">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dTS-N7-0ZR">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="999" constant="400" id="L4p-Mt-hM5"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="dTS-N7-0ZR" secondAttribute="bottom" id="HTS-i2-cZ5"/>
+                                <constraint firstItem="dTS-N7-0ZR" firstAttribute="top" secondItem="g5J-dk-efN" secondAttribute="top" id="ItA-SI-PGp"/>
+                                <constraint firstItem="dTS-N7-0ZR" firstAttribute="leading" secondItem="g5J-dk-efN" secondAttribute="leading" id="NoP-R1-1Ei"/>
+                                <constraint firstAttribute="trailing" secondItem="dTS-N7-0ZR" secondAttribute="trailing" id="Wne-lj-66e"/>
+                            </constraints>
                         </scrollView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dTS-N7-0ZR">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="g5J-dk-efN" secondAttribute="trailing" id="0p8-z1-f11"/>
-                        <constraint firstItem="dTS-N7-0ZR" firstAttribute="centerY" secondItem="bIt-Ur-0sF" secondAttribute="centerY" id="RjP-uh-yB8"/>
-                        <constraint firstItem="dTS-N7-0ZR" firstAttribute="width" secondItem="bIt-Ur-0sF" secondAttribute="width" id="Sbk-F3-Tbd"/>
+                        <constraint firstItem="g5J-dk-efN" firstAttribute="width" secondItem="bIt-Ur-0sF" secondAttribute="width" id="J0E-R6-o3O"/>
                         <constraint firstItem="g5J-dk-efN" firstAttribute="leading" secondItem="bIt-Ur-0sF" secondAttribute="leading" id="Wds-6Y-IJV"/>
-                        <constraint firstItem="dTS-N7-0ZR" firstAttribute="top" secondItem="bIt-Ur-0sF" secondAttribute="top" id="YsP-az-8Mh"/>
                         <constraint firstAttribute="bottom" secondItem="g5J-dk-efN" secondAttribute="bottom" id="cLe-Nq-cGr"/>
                         <constraint firstItem="g5J-dk-efN" firstAttribute="top" secondItem="bIt-Ur-0sF" secondAttribute="top" id="dLA-SB-uJr"/>
-                        <constraint firstItem="dTS-N7-0ZR" firstAttribute="centerX" secondItem="bIt-Ur-0sF" secondAttribute="centerX" id="gWb-6m-IPh"/>
-                        <constraint firstAttribute="trailing" secondItem="dTS-N7-0ZR" secondAttribute="trailing" id="s7B-zU-9gc"/>
-                        <constraint firstAttribute="bottom" secondItem="dTS-N7-0ZR" secondAttribute="bottom" id="vJL-OH-cqU"/>
+                        <constraint firstItem="dTS-N7-0ZR" firstAttribute="centerX" secondItem="bIt-Ur-0sF" secondAttribute="centerX" id="hhR-Mu-7lA"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="bIt-Ur-0sF" firstAttribute="top" secondItem="7Rw-tZ-zle" secondAttribute="top" constant="50" id="CMa-xr-VlA"/>
+                <constraint firstItem="bIt-Ur-0sF" firstAttribute="top" secondItem="7Rw-tZ-zle" secondAttribute="top" id="CMa-xr-VlA"/>
                 <constraint firstItem="7Rw-tZ-zle" firstAttribute="trailing" secondItem="vrR-bk-EWi" secondAttribute="trailing" id="JDe-Fh-Qpy"/>
                 <constraint firstItem="bIt-Ur-0sF" firstAttribute="leading" secondItem="7Rw-tZ-zle" secondAttribute="leading" id="XhX-3V-GF2"/>
                 <constraint firstItem="7Rw-tZ-zle" firstAttribute="trailing" secondItem="bIt-Ur-0sF" secondAttribute="trailing" id="ax7-ll-TsL"/>
                 <constraint firstItem="vrR-bk-EWi" firstAttribute="top" secondItem="7Rw-tZ-zle" secondAttribute="top" id="gml-WG-Pfm"/>
-                <constraint firstItem="bIt-Ur-0sF" firstAttribute="height" secondItem="6eD-KH-sZ4" secondAttribute="height" multiplier="0.6" id="m4h-JO-vm5"/>
+                <constraint firstItem="bIt-Ur-0sF" firstAttribute="height" secondItem="6eD-KH-sZ4" secondAttribute="height" id="m4h-JO-vm5"/>
                 <constraint firstItem="vrR-bk-EWi" firstAttribute="leading" secondItem="7Rw-tZ-zle" secondAttribute="leading" id="pyf-SM-z98"/>
                 <constraint firstItem="7Rw-tZ-zle" firstAttribute="bottom" secondItem="vrR-bk-EWi" secondAttribute="bottom" id="vPC-a5-sw7"/>
             </constraints>

@@ -107,7 +107,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         vm.identifier = "\(index)"
         
         let vc = DetailViewController(withViewModel: vm)
-        present(vc, animated: true, completion: nil)
+        let nv = UINavigationController(rootViewController: vc)
+        nv.hero.isEnabled = true
+        present(nv, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

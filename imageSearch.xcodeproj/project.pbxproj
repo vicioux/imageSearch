@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		01BFC3E87014C940B5019F5B /* Pods_imageSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E60574C210199E33B1F402C /* Pods_imageSearch.framework */; };
+		4906D382224D562E00439656 /* UINavigationController+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906D381224D562E00439656 /* UINavigationController+Styles.swift */; };
+		4906D384224D565800439656 /* UINavigationItem+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906D383224D565800439656 /* UINavigationItem+Styles.swift */; };
 		497D5584224981B1002FC902 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D5583224981B1002FC902 /* AppDelegate.swift */; };
 		497D5586224981B1002FC902 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D5585224981B1002FC902 /* SearchViewController.swift */; };
 		497D5589224981B1002FC902 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497D5587224981B1002FC902 /* Main.storyboard */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		2D71823721F4758C6F2D925A /* Pods-imageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imageSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-imageSearch/Pods-imageSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		4906D381224D562E00439656 /* UINavigationController+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Styles.swift"; sourceTree = "<group>"; };
+		4906D383224D565800439656 /* UINavigationItem+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Styles.swift"; sourceTree = "<group>"; };
 		497D5580224981B1002FC902 /* imageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D5583224981B1002FC902 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		497D5585224981B1002FC902 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 		49EC4DED224A7BD700BF88F0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4906D381224D562E00439656 /* UINavigationController+Styles.swift */,
+				4906D383224D565800439656 /* UINavigationItem+Styles.swift */,
 				49EC4DEE224A7C6000BF88F0 /* UITableView+Utils.swift */,
 				49EC4DF3224A7E4800BF88F0 /* UIView+NibLoadableView.swift */,
 				49EC4DF8224A7F5B00BF88F0 /* UIView+ReusableIdentifier.swift */,
@@ -436,11 +442,13 @@
 				49EC4DEF224A7C6000BF88F0 /* UITableView+Utils.swift in Sources */,
 				49EC4E20224C10A100BF88F0 /* Debouncer.swift in Sources */,
 				49EC4DFC224A823B00BF88F0 /* ImageTableViewCell.swift in Sources */,
+				4906D384224D565800439656 /* UINavigationItem+Styles.swift in Sources */,
 				49EC4E16224B845C00BF88F0 /* SearchViewModel.swift in Sources */,
 				49EC4DF9224A7F5B00BF88F0 /* UIView+ReusableIdentifier.swift in Sources */,
 				49EC4DF4224A7E4800BF88F0 /* UIView+NibLoadableView.swift in Sources */,
 				49EC4E0B224AD68300BF88F0 /* APIServices.swift in Sources */,
 				49EC4E18224BB22E00BF88F0 /* ImageTableViewModel.swift in Sources */,
+				4906D382224D562E00439656 /* UINavigationController+Styles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
