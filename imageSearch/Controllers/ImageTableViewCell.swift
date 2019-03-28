@@ -36,8 +36,6 @@ class ImageTableViewCell: UITableViewCell, AdjustableImageHeight {
         
         if let cachedImage = self.viewModel?.image {
             self.pictureImageView.image = cachedImage
-            //check what can i do to handle an image or video ...
-            
         } else {
             self.pictureImageView.image = UIImage(named: "placeholder_cover")
         }

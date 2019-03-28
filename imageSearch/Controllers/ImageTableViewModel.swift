@@ -18,7 +18,7 @@ public protocol ImageTableViewModelType: class {
     func getTitle() -> String?
     func getDescription() -> String?
     func getUrl() -> URL?
-    func isGif() -> Bool
+    func isVideo() -> Bool
     func getBaseImage() -> ImageBase?
 }
 
@@ -62,15 +62,20 @@ class ImageTableViewModel: NSObject, ImageTableViewModelType {
             return nil
         }
         
+        if isVideo(), let urlString = imageBase.link?.absoluteString {
+            let newUrl = urlString.replacingOccurrences(of: ".mp4", with: ".gif", options: .literal, range: nil)
+            return URL(string: newUrl)
+        }
+        
         return imageBase.link
     }
     
-    func isGif() -> Bool {
+    func isVideo() -> Bool {
         guard let imageBase = getBaseImage(), let url = imageBase.link else {
             return false
         }
         
-        return url.absoluteString.hasSuffix("gif")
+        return url.absoluteString.hasSuffix("mp4")
     }
     
     func getBaseImage() -> ImageBase? {

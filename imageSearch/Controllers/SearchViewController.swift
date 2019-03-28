@@ -122,15 +122,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - Table View SearchViewController
-extension SearchViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let cell = sender as? ImageCell, let detailViewController = segue.destination as? DetailViewController {
-//            detailViewController.unsplashImage = cell.unsplashImage
-//        }
-    }
-}
-
 
 // MARK: - Table View UISearchResultsUpdating
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
