@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateView: UIView!
     @IBOutlet weak var emptyStateLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var viewModel: SearchViewModelType!
     let searchController = UISearchController(searchResultsController: nil)
@@ -40,6 +41,7 @@ class SearchViewController: UIViewController {
         viewModel.loadGallery { [weak self] (success) in
             self?.removeLoadMore()
             self?.setupEmptyState()
+            self?.activityIndicator.isHidden = true
             
             if !success {
                 self?.showShareFailAlert()
@@ -144,6 +146,7 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
         viewModel.resetText()
         viewModel.resetPage()
         viewModel.setText(text)
+        activityIndicator.isHidden = false
         debouncer.renewInterval()
     }
 }

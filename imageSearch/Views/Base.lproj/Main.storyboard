@@ -18,10 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vau-Vf-f0Q">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vau-Vf-f0Q">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Obi-uO-szq">
+                                <rect key="frame" x="157.5" y="335.5" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ShR-Fd-8d2"/>
+                                    <constraint firstAttribute="width" constant="60" id="iVF-bk-Xuf"/>
+                                </constraints>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2m2-xp-nTo">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
@@ -48,13 +55,16 @@
                             <constraint firstItem="vau-Vf-f0Q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="IG7-Hg-Qnv"/>
                             <constraint firstItem="2m2-xp-nTo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Job-mv-cHF"/>
                             <constraint firstItem="vau-Vf-f0Q" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="LUf-Pm-HTD"/>
+                            <constraint firstItem="Obi-uO-szq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="OYi-r8-YR4"/>
                             <constraint firstItem="2m2-xp-nTo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bcH-bI-Sff"/>
+                            <constraint firstItem="Obi-uO-szq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="m9g-g1-oze"/>
                             <constraint firstItem="vau-Vf-f0Q" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ufF-xE-jtf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="7Wg-4N-zga"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Obi-uO-szq" id="OpJ-rc-K6e"/>
                         <outlet property="emptyStateLabel" destination="wyu-YI-E8u" id="DwE-GI-yjd"/>
                         <outlet property="emptyStateView" destination="2m2-xp-nTo" id="h2m-84-Xvf"/>
                         <outlet property="tableView" destination="vau-Vf-f0Q" id="hVc-I2-a6L"/>
