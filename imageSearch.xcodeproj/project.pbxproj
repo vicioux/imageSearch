@@ -17,7 +17,6 @@
 		497D55A4224981B2002FC902 /* imageSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D55A3224981B2002FC902 /* imageSearchUITests.swift */; };
 		498C586C224C309500077462 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498C586B224C309500077462 /* DetailViewController.xib */; };
 		498C586E224C30A900077462 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C586D224C30A900077462 /* DetailViewController.swift */; };
-		498C5870224C4A3200077462 /* ExpandingCellTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C586F224C4A3200077462 /* ExpandingCellTransition.swift */; };
 		49EC4DEF224A7C6000BF88F0 /* UITableView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC4DEE224A7C6000BF88F0 /* UITableView+Utils.swift */; };
 		49EC4DF4224A7E4800BF88F0 /* UIView+NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC4DF3224A7E4800BF88F0 /* UIView+NibLoadableView.swift */; };
 		49EC4DF9224A7F5B00BF88F0 /* UIView+ReusableIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC4DF8224A7F5B00BF88F0 /* UIView+ReusableIdentifier.swift */; };
@@ -65,7 +64,6 @@
 		497D55A5224981B2002FC902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		498C586B224C309500077462 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		498C586D224C30A900077462 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		498C586F224C4A3200077462 /* ExpandingCellTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandingCellTransition.swift; sourceTree = "<group>"; };
 		49EC4DEE224A7C6000BF88F0 /* UITableView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utils.swift"; sourceTree = "<group>"; };
 		49EC4DF3224A7E4800BF88F0 /* UIView+NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadableView.swift"; sourceTree = "<group>"; };
 		49EC4DF8224A7F5B00BF88F0 /* UIView+ReusableIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ReusableIdentifier.swift"; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 		49EC4DFF224AB7EF00BF88F0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				498C586F224C4A3200077462 /* ExpandingCellTransition.swift */,
 				49EC4E00224AB80700BF88F0 /* AdjustableImageHeight.swift */,
 				49EC4E1F224C10A100BF88F0 /* Debouncer.swift */,
 			);
@@ -409,12 +406,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-imageSearch/Pods-imageSearch-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,7 +433,6 @@
 				497D5586224981B1002FC902 /* SearchViewController.swift in Sources */,
 				497D5584224981B1002FC902 /* AppDelegate.swift in Sources */,
 				49EC4E01224AB80700BF88F0 /* AdjustableImageHeight.swift in Sources */,
-				498C5870224C4A3200077462 /* ExpandingCellTransition.swift in Sources */,
 				49EC4DEF224A7C6000BF88F0 /* UITableView+Utils.swift in Sources */,
 				49EC4E20224C10A100BF88F0 /* Debouncer.swift in Sources */,
 				49EC4DFC224A823B00BF88F0 /* ImageTableViewCell.swift in Sources */,

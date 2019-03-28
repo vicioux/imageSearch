@@ -12,6 +12,7 @@ import Kingfisher
 
 public protocol ImageTableViewModelType: class {
     var image: UIImage? {get set}
+    var identifier: String? { get set }
     var galleryItem: GalleryItem? { get set }
     var refreshUICallback: (() -> Void)? {get set}
     func getTitle() -> String?
@@ -25,6 +26,7 @@ public protocol ImageTableViewModelType: class {
 class ImageTableViewModel: NSObject, ImageTableViewModelType {
     var refreshUICallback: (() -> Void)? = nil
     
+    var identifier: String?
     var image: UIImage?
     var galleryItem: GalleryItem?
     

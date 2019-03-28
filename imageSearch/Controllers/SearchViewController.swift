@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class SearchViewController: UIViewController {
     
@@ -17,9 +18,8 @@ class SearchViewController: UIViewController {
     
     var viewModel: SearchViewModelType!
     let searchController = UISearchController(searchResultsController: nil)
-    var debouncer: Debouncer = Debouncer(timeInterval: 0.25)
-
     var selectedIndexPath: IndexPath?
+    var debouncer: Debouncer = Debouncer(timeInterval: 0.25)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -102,13 +102,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
+        guard let item = viewModel.getItemAt(index: indexPath.row) else { return }
+        let vm = ImageTableViewModel(withGalleryItem: item)
+        vm.identifier = "\(index)"
         
-        if let item = viewModel.getItemAt(index: indexPath.row) {
-            let vm = ImageTableViewModel(withGalleryItem: item)
-            let vc = DetailViewController(withViewModel: vm)
-            navigationController?.present(vc, animated: true, completion: nil)
-        }
+        let vc = DetailViewController(withViewModel: vm)
+        present(vc, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -120,6 +119,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
+// MARK: - Table View SearchViewController
+extension SearchViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let cell = sender as? ImageCell, let detailViewController = segue.destination as? DetailViewController {
+//            detailViewController.unsplashImage = cell.unsplashImage
+//        }
+    }
+}
+
 
 // MARK: - Table View UISearchResultsUpdating
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
@@ -151,11 +160,3 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
 }
 
-// MARK: ExpandingTransitionPresentingViewController
-extension SearchViewController: ExpandingTransitionPresentingViewController
-{
-    func expandingTransitionTargetViewForTransition(_ transition: ExpandingCellTransition) -> UIView! {
-        guard let indexPath = selectedIndexPath else { return nil }
-        return tableView.cellForRow(at: indexPath)
-    }
-}
