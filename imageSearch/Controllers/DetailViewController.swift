@@ -14,10 +14,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var visualEffectContainer: UIView!
+    
     
     var viewModel: ImageTableViewModelType!
-    let contentCard = UIView()
-//    let cardView = CardView()
     let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     
     required public init?(coder aDecoder: NSCoder) {
@@ -38,13 +38,9 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         addViewModifiers()
         
-        view.backgroundColor = .clear
-        contentCard.backgroundColor = .white
-        contentCard.clipsToBounds = true
-        
-//        contentCard.addSubview(cardView)
-//        view.addSubview(visualEffectView)
-//        view.addSubview(contentCard)
+        //view.backgroundColor = .clear
+        visualEffectContainer.backgroundColor = .clear
+        visualEffectContainer.addSubview(visualEffectView)
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(gr:))))
@@ -59,7 +55,7 @@ class DetailViewController: UIViewController {
         self.cardView.hero.modifiers = [.useNoSnapshot, .spring(stiffness: 250, damping: 25)]
         
         guard let identifier = viewModel.identifier else { return }
-        self.contentCard.hero.modifiers = [.source(heroID: identifier), .spring(stiffness: 250, damping: 25)]
+        view.hero.modifiers = [.source(heroID: identifier), .spring(stiffness: 250, damping: 25)]
         self.visualEffectView.hero.modifiers = [.fade, .useNoSnapshot]
     }
     
@@ -84,8 +80,6 @@ class DetailViewController: UIViewController {
         super.viewDidLayoutSubviews()
         let bounds = view.bounds
         visualEffectView.frame = bounds
-        contentCard.frame = bounds
-        cardView.frame = CGRect(x: 0, y: 10, width: bounds.width, height: bounds.width)
     }
 
     @objc func dismissView() {
