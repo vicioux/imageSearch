@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var debouncer: Debouncer = Debouncer(timeInterval: 0.25)
 
+    var selectedIndexPath: IndexPath?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,6 +34,8 @@ class SearchViewController: UIViewController {
     
     private func loadData() {
         viewModel.loadGallery { [weak self] (success) in
+            self?.removeLoadMore()
+            
             if !success {
                 // show something
                 return
@@ -48,6 +51,20 @@ class SearchViewController: UIViewController {
         tableView.register(ImageTableViewCell.self)
     }
     
+    private func addLoadMore() {
+        if tableView.tableFooterView == nil {
+            let spinner = UIActivityIndicatorView(style: .gray)
+            spinner.startAnimating()
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+            tableView.tableFooterView = spinner
+        }
+        
+        tableView.tableFooterView?.isHidden = false
+    }
+    
+    private func removeLoadMore() {
+        tableView.tableFooterView?.isHidden = true
+    }
 
 }
 
@@ -67,11 +84,22 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        
+        if let item = viewModel.getItemAt(index: indexPath.row) {
+            let vm = ImageTableViewModel(withGalleryItem: item)
+            let vc = DetailViewController(withViewModel: vm)
+            navigationController?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = viewModel.getItemsCount() - 1
         if indexPath.row == lastElement {
             viewModel.moveToNextPage()
             loadData()
+            addLoadMore()
         }
     }
 }
@@ -80,6 +108,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func setupSearch() {
+        title = "Start Searching..."
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Images"
@@ -95,5 +124,13 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
         viewModel.setText(text)
         debouncer.renewInterval()
     }
-    
+}
+
+// MARK: ExpandingTransitionPresentingViewController
+extension SearchViewController: ExpandingTransitionPresentingViewController
+{
+    func expandingTransitionTargetViewForTransition(_ transition: ExpandingCellTransition) -> UIView! {
+        guard let indexPath = selectedIndexPath else { return nil }
+        return tableView.cellForRow(at: indexPath)
+    }
 }

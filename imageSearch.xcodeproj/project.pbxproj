@@ -15,6 +15,9 @@
 		497D558E224981B2002FC902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497D558C224981B2002FC902 /* LaunchScreen.storyboard */; };
 		497D5599224981B2002FC902 /* imageSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D5598224981B2002FC902 /* imageSearchTests.swift */; };
 		497D55A4224981B2002FC902 /* imageSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D55A3224981B2002FC902 /* imageSearchUITests.swift */; };
+		498C586C224C309500077462 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498C586B224C309500077462 /* DetailViewController.xib */; };
+		498C586E224C30A900077462 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C586D224C30A900077462 /* DetailViewController.swift */; };
+		498C5870224C4A3200077462 /* ExpandingCellTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C586F224C4A3200077462 /* ExpandingCellTransition.swift */; };
 		49EC4DEF224A7C6000BF88F0 /* UITableView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC4DEE224A7C6000BF88F0 /* UITableView+Utils.swift */; };
 		49EC4DF4224A7E4800BF88F0 /* UIView+NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC4DF3224A7E4800BF88F0 /* UIView+NibLoadableView.swift */; };
 		49EC4DF9224A7F5B00BF88F0 /* UIView+ReusableIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EC4DF8224A7F5B00BF88F0 /* UIView+ReusableIdentifier.swift */; };
@@ -60,6 +63,9 @@
 		497D559F224981B2002FC902 /* imageSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imageSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D55A3224981B2002FC902 /* imageSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageSearchUITests.swift; sourceTree = "<group>"; };
 		497D55A5224981B2002FC902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		498C586B224C309500077462 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		498C586D224C30A900077462 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		498C586F224C4A3200077462 /* ExpandingCellTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandingCellTransition.swift; sourceTree = "<group>"; };
 		49EC4DEE224A7C6000BF88F0 /* UITableView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utils.swift"; sourceTree = "<group>"; };
 		49EC4DF3224A7E4800BF88F0 /* UIView+NibLoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadableView.swift"; sourceTree = "<group>"; };
 		49EC4DF8224A7F5B00BF88F0 /* UIView+ReusableIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ReusableIdentifier.swift"; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 			children = (
 				497D5587224981B1002FC902 /* Main.storyboard */,
 				49EC4DFD224A825D00BF88F0 /* ImageTableViewCell.xib */,
+				498C586B224C309500077462 /* DetailViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,6 +199,7 @@
 				49EC4E17224BB22E00BF88F0 /* ImageTableViewModel.swift */,
 				497D5585224981B1002FC902 /* SearchViewController.swift */,
 				49EC4E15224B845C00BF88F0 /* SearchViewModel.swift */,
+				498C586D224C30A900077462 /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +207,7 @@
 		49EC4DFF224AB7EF00BF88F0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				498C586F224C4A3200077462 /* ExpandingCellTransition.swift */,
 				49EC4E00224AB80700BF88F0 /* AdjustableImageHeight.swift */,
 				49EC4E1F224C10A100BF88F0 /* Debouncer.swift */,
 			);
@@ -346,6 +355,7 @@
 			files = (
 				497D558E224981B2002FC902 /* LaunchScreen.storyboard in Resources */,
 				49EC4DFE224A825D00BF88F0 /* ImageTableViewCell.xib in Resources */,
+				498C586C224C309500077462 /* DetailViewController.xib in Resources */,
 				497D558B224981B2002FC902 /* Assets.xcassets in Resources */,
 				497D5589224981B1002FC902 /* Main.storyboard in Resources */,
 			);
@@ -419,10 +429,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498C586E224C30A900077462 /* DetailViewController.swift in Sources */,
 				49EC4E04224AB93600BF88F0 /* ImageBase.swift in Sources */,
 				497D5586224981B1002FC902 /* SearchViewController.swift in Sources */,
 				497D5584224981B1002FC902 /* AppDelegate.swift in Sources */,
 				49EC4E01224AB80700BF88F0 /* AdjustableImageHeight.swift in Sources */,
+				498C5870224C4A3200077462 /* ExpandingCellTransition.swift in Sources */,
 				49EC4DEF224A7C6000BF88F0 /* UITableView+Utils.swift in Sources */,
 				49EC4E20224C10A100BF88F0 /* Debouncer.swift in Sources */,
 				49EC4DFC224A823B00BF88F0 /* ImageTableViewCell.swift in Sources */,

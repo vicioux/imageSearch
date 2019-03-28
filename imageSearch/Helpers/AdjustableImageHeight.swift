@@ -18,7 +18,7 @@ public protocol AdjustableImageHeight {
     func adjustImageProportions(forImage baseSize: CGSize, baseWidth: CGFloat, adjustableHeightConstraint: inout NSLayoutConstraint)
 }
 
-extension AdjustableImageHeight where Self :UIView {
+extension AdjustableImageHeight {
     public func adjustImageProportions(forImage base: ImageBase, baseWidth: CGFloat, adjustableHeightConstraint: inout NSLayoutConstraint) {
         if let imageRatio = base.aspectRatio {
             adjustableHeightConstraint.constant = baseWidth / CGFloat(imageRatio)

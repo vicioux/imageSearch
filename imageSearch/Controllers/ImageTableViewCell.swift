@@ -25,6 +25,7 @@ class ImageTableViewCell: UITableViewCell, AdjustableImageHeight {
     open func load(withViewModel vm: ImageTableViewModelType) {
         viewModel = vm
         setImage()
+        descriptionLabel.text = viewModel.getTitle() ?? viewModel.getDescription()
         viewModel.refreshUICallback = self.getRefreshUIClosure()
     }
     
