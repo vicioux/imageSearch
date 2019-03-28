@@ -19,9 +19,12 @@ public protocol SearchViewModelType: class {
     func moveToNextPage()
     func getItemAt(index: Int) -> GalleryItem?
     func getItemsCount() -> Int
+    func showEmptyState() -> Bool
+    func getEmptyStateMessage() -> String
 }
 
 class SearchViewModel: SearchViewModelType, GalleryServices {
+
     var gallery: [GalleryItem]?
     var currentPage = 1
     var currentText: String?
@@ -87,6 +90,14 @@ class SearchViewModel: SearchViewModelType, GalleryServices {
     func resetText() {
         currentText = nil
         gallery?.removeAll()
+    }
+    
+    func getEmptyStateMessage() -> String {
+        return "Lets see some funny images"
+    }
+    
+    func showEmptyState() -> Bool {
+        return getItemsCount() <= 0
     }
     
 }

@@ -11,6 +11,9 @@ import UIKit
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyStateView: UIView!
+    @IBOutlet weak var emptyStateLabel: UILabel!
+    
     var viewModel: SearchViewModelType!
     let searchController = UISearchController(searchResultsController: nil)
     var debouncer: Debouncer = Debouncer(timeInterval: 0.25)
@@ -26,6 +29,7 @@ class SearchViewController: UIViewController {
         viewModel = SearchViewModel()
         setupSearch()
         setupTable()
+        setupEmptyState()
         
         debouncer.handler = {
             self.loadData()
@@ -35,9 +39,10 @@ class SearchViewController: UIViewController {
     private func loadData() {
         viewModel.loadGallery { [weak self] (success) in
             self?.removeLoadMore()
+            self?.setupEmptyState()
             
             if !success {
-                // show something
+                self?.showShareFailAlert()
                 return
             }
             self?.tableView.reloadData()
@@ -49,6 +54,11 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.register(ImageTableViewCell.self)
+    }
+    
+    private func setupEmptyState() {
+        emptyStateView.isHidden = !viewModel.showEmptyState()
+        emptyStateLabel.text = viewModel.getEmptyStateMessage()
     }
     
     private func addLoadMore() {
@@ -66,6 +76,11 @@ class SearchViewController: UIViewController {
         tableView.tableFooterView?.isHidden = true
     }
 
+    private func showShareFailAlert() {
+        let alert = UIAlertController(title: "Opsss!", message: "Something went wrong, please try later", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Table View UITableViewDelegate, UITableViewDataSource
@@ -115,6 +130,13 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchController.searchBar.delegate = self
+        
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
