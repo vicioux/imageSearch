@@ -16,3 +16,5 @@ Ps: just open imageSearch.xcworkspace
 * Centralized error handling
 * Smoother animations
 * Nicer Design
+* Maybe a linter
+* Repository pattern
